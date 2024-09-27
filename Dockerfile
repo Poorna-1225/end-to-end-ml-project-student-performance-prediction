@@ -1,9 +1,9 @@
-from python:3.8-slim-buster
-workdir /app
-copy . /app
+FROM python:3.8-slim-buster
 
-run apt update -y && apt isntall awscli -y
+RUN apt update -y && apt install awscli -y
+WORKDIR /app
 
+COPY . /app
+RUN pip install -r requirements.txt
 
-run pip install -r requirements.txt
-cmd['python3','app.py']
+CMD ["python3","app.py"]
